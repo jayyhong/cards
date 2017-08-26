@@ -1,15 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Deck</ion-title>
+    <ion-title>Players</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <img src="../../assets/PNG-cards-1.3/{{file}}" class="card" (swipe)="nextCard()"/>
-  <button ion-button color="primary" style="margin-left: 0%" (click)="nextCard()">Next Card</button>
-  <button ion-button color="primary" (click)="test()">Test</button>
-  <button ion-button color ="primary" (click)="redirect()">Players Page</button>
+  <ion-list *ngFor="let user of users">
+    <ion-item>
+      {{user.name}}
+    </ion-item>
+    <ion-col *ngFor="let card of user.cards">
+      <img src="../../assets/PNG-cards-1.3/{{card}}" style="margin-left: -12px; height: 100px" />
+    </ion-col>
+  </ion-list>
+  <button ion-button color="primary" (click)="populateUserCards()">Shuffle</button>
 </ion-content>
